@@ -25,7 +25,7 @@ class UntitledTestCase(unittest.TestCase):
         # открываем сайт
         wd.get("http://localhost/adressbook/index.php")
         # логинемся
-        self.login_site(wd)
+        self.login_site(wd, usname="admin", passwd="secret")
         # добавляем контакт
         self.input_data_contact(wd)
         # нажимаем кнопку home page
@@ -117,16 +117,16 @@ class UntitledTestCase(unittest.TestCase):
         # press enter
         wd.find_element_by_xpath("//div[@id='content']/form/input[21]").click()
 
-    def login_site(self, wd):
+    def login_site(self, wd, usname, passwd):
         # логин
         wd.find_element_by_name("user").click()
         wd.find_element_by_name("user").clear()
-        wd.find_element_by_name("user").send_keys("admin")
+        wd.find_element_by_name("user").send_keys(usname)
         # пароль
         wd.find_element_by_name("pass").click()
         wd.find_element_by_name("pass").clear()
         # вводим пароль
-        wd.find_element_by_name("pass").send_keys("secret")
+        wd.find_element_by_name("pass").send_keys(passwd)
         # нажимаем кнопку логин
         wd.find_element_by_xpath("//input[@value='Login']").click()
 
