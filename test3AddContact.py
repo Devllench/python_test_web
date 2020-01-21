@@ -14,23 +14,29 @@ def is_alert_present(self):
         return False
     return True
 
+
 class UntitledTestCase(unittest.TestCase):
     def setUp(self):
         self.wd = webdriver.Firefox()
         self.wd.implicitly_wait(30)
 
-    
     def test_untitled_test_case(self):
         wd = self.wd
+        # открываем сайт
         wd.get("http://localhost/adressbook/index.php")
-        wd.find_element_by_name("pass").click()
-        wd.find_element_by_name("pass").clear()
-        wd.find_element_by_name("pass").send_keys("secret")
-        wd.find_element_by_name("user").click()
-        wd.find_element_by_name("user").clear()
-        wd.find_element_by_name("user").send_keys("admin")
-        wd.find_element_by_xpath("//input[@value='Login']").click()
+        # логинемся
+        self.login_site(wd)
+        # добавляем контакт
+        self.input_data_contact(wd)
+        # нажимаем кнопку home page
+        wd.find_element_by_link_text("home page").click()
+        # разлагиниваемся
+        wd.find_element_by_link_text("Logout").click()
+
+    def input_data_contact(self, wd):
+        # press add new
         wd.find_element_by_link_text("add new").click()
+        # input date
         wd.find_element_by_name("firstname").click()
         wd.find_element_by_name("firstname").clear()
         wd.find_element_by_name("firstname").send_keys("testname")
@@ -84,7 +90,8 @@ class UntitledTestCase(unittest.TestCase):
         wd.find_element_by_xpath("//div[@id='content']/form/select/option[3]").click()
         wd.find_element_by_name("bmonth").click()
         Select(wd.find_element_by_name("bmonth")).select_by_visible_text("January")
-        wd.find_element_by_xpath("(.//*[normalize-space(text()) and normalize-space(.)='Birthday:'])[1]/following::option[35]").click()
+        wd.find_element_by_xpath(
+            "(.//*[normalize-space(text()) and normalize-space(.)='Birthday:'])[1]/following::option[35]").click()
         wd.find_element_by_name("byear").click()
         wd.find_element_by_name("byear").clear()
         wd.find_element_by_name("byear").send_keys("2000")
@@ -107,15 +114,31 @@ class UntitledTestCase(unittest.TestCase):
         wd.find_element_by_name("notes").click()
         wd.find_element_by_name("notes").clear()
         wd.find_element_by_name("notes").send_keys("test")
+        # press enter
         wd.find_element_by_xpath("//div[@id='content']/form/input[21]").click()
-        wd.find_element_by_link_text("home page").click()
-        wd.find_element_by_link_text("Logout").click()
-    
+
+    def login_site(self, wd):
+        # логин
+        wd.find_element_by_name("user").click()
+        wd.find_element_by_name("user").clear()
+        wd.find_element_by_name("user").send_keys("admin")
+        # пароль
+        wd.find_element_by_name("pass").click()
+        wd.find_element_by_name("pass").clear()
+        # вводим пароль
+        wd.find_element_by_name("pass").send_keys("secret")
+        # нажимаем кнопку логин
+        wd.find_element_by_xpath("//input[@value='Login']").click()
+
+
+
     def is_element_present(self, how, what):
-        try: self.wd.find_element(by=how, value=what)
-        except NoSuchElementException as e: return False
+        try:
+            self.wd.find_element(by=how, value=what)
+        except NoSuchElementException as e:
+            return False
         return True
-    
+
     def tearDown(self):
         self.wd.quit()
 
