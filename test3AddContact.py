@@ -29,43 +29,44 @@ class UntitledTestCase(unittest.TestCase):
         # логинемся
         self.login_site(wd, Auth(username="admin", password="secret"))
         # добавляем контакт
-        self.input_data_contact(wd)
+        self.input_data_contact(wd, firstname="testname", middlename="testname1")
         # нажимаем кнопку home page
         wd.find_element_by_link_text("home page").click()
         # разлагиниваемся
         wd.find_element_by_link_text("Logout").click()
 
-    def input_data_contact(self, wd):
+    def input_data_contact(self, wd, firstname, middlename, lastname="testname2", nickname="testniki",
+                           title="testtitle", company="testcompany", address="test adress 12", home="testhome"):
         # press add new
         wd.find_element_by_link_text("add new").click()
         # input date
         wd.find_element_by_name("firstname").click()
         wd.find_element_by_name("firstname").clear()
-        wd.find_element_by_name("firstname").send_keys("testname")
+        wd.find_element_by_name("firstname").send_keys(firstname)
         wd.find_element_by_name("middlename").click()
         wd.find_element_by_name("middlename").clear()
-        wd.find_element_by_name("middlename").send_keys("testname1")
+        wd.find_element_by_name("middlename").send_keys(middlename)
         wd.find_element_by_name("lastname").click()
         wd.find_element_by_name("lastname").clear()
-        wd.find_element_by_name("lastname").send_keys("testname2")
+        wd.find_element_by_name("lastname").send_keys(lastname)
         wd.find_element_by_name("nickname").click()
         wd.find_element_by_name("nickname").clear()
-        wd.find_element_by_name("nickname").send_keys("testniki")
+        wd.find_element_by_name("nickname").send_keys(nickname)
         wd.find_element_by_name("title").click()
         wd.find_element_by_name("title").clear()
-        wd.find_element_by_name("title").send_keys("testtitle")
+        wd.find_element_by_name("title").send_keys(title)
         wd.find_element_by_name("company").click()
         wd.find_element_by_name("company").clear()
-        wd.find_element_by_name("company").send_keys("testcompany")
+        wd.find_element_by_name("company").send_keys(company)
         wd.find_element_by_name("address").click()
         wd.find_element_by_name("address").clear()
-        wd.find_element_by_name("address").send_keys("test adress 12")
+        wd.find_element_by_name("address").send_keys(address)
         wd.find_element_by_name("home").click()
         wd.find_element_by_name("home").clear()
-        wd.find_element_by_name("home").send_keys("t")
-        wd.find_element_by_name("home").send_keys(Keys.DOWN)
+        #wd.find_element_by_name("home").send_keys("t")
+        #wd.find_element_by_name("home").send_keys(Keys.DOWN)
         wd.find_element_by_name("home").clear()
-        wd.find_element_by_name("home").send_keys("testhome")
+        wd.find_element_by_name("home").send_keys(home)
         wd.find_element_by_name("mobile").click()
         wd.find_element_by_name("mobile").clear()
         wd.find_element_by_name("mobile").send_keys("testmob")
@@ -131,8 +132,6 @@ class UntitledTestCase(unittest.TestCase):
         wd.find_element_by_name("pass").send_keys(Auth.password)
         # нажимаем кнопку логин
         wd.find_element_by_xpath("//input[@value='Login']").click()
-
-
 
     def is_element_present(self, how, what):
         try:
