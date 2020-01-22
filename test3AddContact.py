@@ -6,6 +6,8 @@ from selenium.common.exceptions import NoSuchElementException
 from selenium.common.exceptions import NoAlertPresentException
 import unittest
 
+from class_test_contact import Auth
+
 
 def is_alert_present(self):
     try:
@@ -25,7 +27,7 @@ class UntitledTestCase(unittest.TestCase):
         # открываем сайт
         wd.get("http://localhost/adressbook/index.php")
         # логинемся
-        self.login_site(wd, usname="admin", passwd="secret")
+        self.login_site(wd, Auth(username="admin", password="secret"))
         # добавляем контакт
         self.input_data_contact(wd)
         # нажимаем кнопку home page
@@ -117,16 +119,16 @@ class UntitledTestCase(unittest.TestCase):
         # press enter
         wd.find_element_by_xpath("//div[@id='content']/form/input[21]").click()
 
-    def login_site(self, wd, usname, passwd):
+    def login_site(self, wd, Auth):
         # логин
         wd.find_element_by_name("user").click()
         wd.find_element_by_name("user").clear()
-        wd.find_element_by_name("user").send_keys(usname)
+        wd.find_element_by_name("user").send_keys(Auth.username)
         # пароль
         wd.find_element_by_name("pass").click()
         wd.find_element_by_name("pass").clear()
         # вводим пароль
-        wd.find_element_by_name("pass").send_keys(passwd)
+        wd.find_element_by_name("pass").send_keys(Auth.password)
         # нажимаем кнопку логин
         wd.find_element_by_xpath("//input[@value='Login']").click()
 
