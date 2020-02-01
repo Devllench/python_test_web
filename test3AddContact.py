@@ -22,24 +22,27 @@ class UntitledTestCase(unittest.TestCase):
         self.wd.implicitly_wait(30)
 
     def test_untitled_test_case(self):
-        wd = self.wd
-        # открываем сайт
-        wd.get("http://localhost/adressbook/index.php")
         # логинемся
-        self.login_site(wd, Auth(username="admin", password="secret"))
+        self.login_site(Auth(username="admin", password="secret"))
         # добавляем контакт
-        self.input_data_contact(wd, Сontact_test1)
+        self.input_data_contact(Сontact_test1)
         # добавляем фото (не работает)
         # self.test_add_img(wd)
+        self.logout()
+
+    def logout(self):
+        wd = self.wd
         # разлагиниваемся
         wd.find_element_by_link_text("Logout").click()
 
     # def test_add_img(self,wd):
+    #   wd = self.wd
     #   wd.find_element_by_name("photo").click()
     #   wd.find_element_by_name("photo").clear()
     #   wd.find_element_by_name("photo").send_keys("C:\\fakepath\\1649022.jpg")
 
-    def input_data_contact(self, wd, Contactdate):
+    def input_data_contact(self, Contactdate):
+        wd = self.wd
         # press add new
         wd.find_element_by_link_text("add new").click()
         # input date
@@ -125,7 +128,10 @@ class UntitledTestCase(unittest.TestCase):
         # нажимаем кнопку home page
         wd.find_element_by_link_text("home page").click()
 
-    def login_site(self, wd, Auth):
+    def login_site(self, Auth):
+        wd = self.wd
+        # открываем сайт
+        wd.get("http://localhost/adressbook/index.php")
         # логин
         wd.find_element_by_name("user").click()
         wd.find_element_by_name("user").clear()
