@@ -31,8 +31,6 @@ class UntitledTestCase(unittest.TestCase):
         self.input_data_contact(wd, Сontact_test1)
         # добавляем фото (не работает)
         # self.test_add_img(wd)
-        # нажимаем кнопку home page
-        wd.find_element_by_link_text("home page").click()
         # разлагиниваемся
         wd.find_element_by_link_text("Logout").click()
 
@@ -124,6 +122,8 @@ class UntitledTestCase(unittest.TestCase):
         wd.find_element_by_name("notes").send_keys(Contactdate.notes)
         # press enter
         wd.find_element_by_xpath("//div[@id='content']/form/input[21]").click()
+        # нажимаем кнопку home page
+        wd.find_element_by_link_text("home page").click()
 
     def login_site(self, wd, Auth):
         # логин
