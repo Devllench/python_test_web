@@ -5,7 +5,7 @@ from selenium.common.exceptions import NoSuchElementException
 from selenium.common.exceptions import NoAlertPresentException
 import unittest
 
-from class_test_contact import Auth, Сontact_test1
+from class_test_contact import Auth, Contactdate
 
 
 def is_alert_present(self):
@@ -16,12 +16,21 @@ def is_alert_present(self):
     return True
 
 
-class UntitledTestCase(unittest.TestCase):
+class TestAddContact(unittest.TestCase):
     def setUp(self):
         self.wd = webdriver.Firefox()
         self.wd.implicitly_wait(30)
 
-    def test_untitled_test_case(self):
+    def test_add_contact(self):
+        # Данные используемые для тестирования
+        Сontact_test1 = Contactdate(firstname="testname", middlename="testname1", lastname="testname2",
+                                    nickname="testniki", title="testtitle", company="testcompany",
+                                    address="test adress 12",
+                                    home="testhome", mobile="testmob", work="testwork", fax="testfax",
+                                    email="test@mail.ru",
+                                    email2="testmail2@mail.ru", email3="testmail3@mail.ru", homepage="testhomepage",
+                                    bday="1", bmonth="January", byear="2000", ayear="2010", amonth="March", aday="10",
+                                    address2="test adr", phone2="testhome", notes="test")
         # логинемся
         self.login_site(Auth(username="admin", password="secret"))
         # добавляем контакт
