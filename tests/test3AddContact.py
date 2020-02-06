@@ -22,7 +22,7 @@ def test_add_contact(app):
                                 bday="1", bmonth="January", byear="2000", ayear="2010", amonth="March", aday="10",
                                 address2="test adr", phone2="testhome", notes="test")
     # логинемся
-    app.login_site(Auth(username="admin", password="secret"))
+    app.session.login_site(Auth(username="admin", password="secret"))
     # добавляем контакт
     app.input_data_contact(Сontact_test1)
-    app.logout_site()
+    app.session.logout_site()

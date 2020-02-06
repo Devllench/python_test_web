@@ -1,5 +1,6 @@
 from selenium import webdriver
 from selenium.webdriver.support.ui import Select
+from fixture.session import SessionHelper
 
 
 class Application:
@@ -7,6 +8,7 @@ class Application:
     def __init__(self):
         self.wd = webdriver.Firefox()
         self.wd.implicitly_wait(30)
+        self.session = SessionHelper(self)
 
     def open_home_page(self):
         wd = self.wd
@@ -37,22 +39,6 @@ class Application:
 
     def destroy(self):
         self.wd.quit()
-
-    def login_site(self, Auth):
-        wd = self.wd
-        # открываем сайт
-        wd.get("http://localhost/adressbook/index.php")
-        # логин
-        wd.find_element_by_name("user").click()
-        wd.find_element_by_name("user").clear()
-        wd.find_element_by_name("user").send_keys(Auth.username)
-        # пароль
-        wd.find_element_by_name("pass").click()
-        wd.find_element_by_name("pass").clear()
-        # вводим пароль
-        wd.find_element_by_name("pass").send_keys(Auth.password)
-        # нажимаем кнопку логин
-        wd.find_element_by_xpath("//input[@value='Login']").click()
 
     def input_data_contact(self, Contactdate):
         wd = self.wd
@@ -140,8 +126,3 @@ class Application:
         wd.find_element_by_xpath("//div[@id='content']/form/input[21]").click()
         # нажимаем кнопку home page
         wd.find_element_by_link_text("home page").click()
-
-    def logout_site(self):
-        wd = self.wd
-        # разлагиниваемся
-        wd.find_element_by_link_text("Logout").click()
