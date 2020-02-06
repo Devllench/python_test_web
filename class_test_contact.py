@@ -1,5 +1,4 @@
 # Классы
-
 class Auth:
 
     def __init__(self, username, password):

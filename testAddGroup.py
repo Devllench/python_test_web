@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
 import pytest
-from сlass_test_group import Group
+from сlass_test_group import Group, Auth
 from application import Application
 
 
-@pytest.fixture()
+@pytest.fixture
 def app(request):
     fixture = Application()
     request.addfinalizer(fixture.destroy)
@@ -12,13 +12,13 @@ def app(request):
 
 
 def test_add_group(app):
-    app.login(username="admin", password="secret")
+    app.login_site(Auth(username="admin", password="secret"))
     app.create_group(Group(group_name="tested", group_header="test head rec", group_footer="test foot rec"))
-    app.logout()
+    app.logout_site()
 
 
 def test_add_empty_group(app):
-    app.login(username="admin", password="secret")
+    app.login_site(Auth(username="admin", password="secret"))
     app.create_group(Group(group_name="", group_header="", group_footer=""))
-    app.logout()
+    app.logout_site()
 

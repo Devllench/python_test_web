@@ -8,7 +8,8 @@ from application import Application
 import pytest
 from class_test_contact import Auth, Contactdate
 
-@pytest.fixture()
+
+@pytest.fixture
 def app(request):
     fixture = Application()
     request.addfinalizer(fixture.destroy)
