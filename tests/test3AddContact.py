@@ -1,12 +1,7 @@
 # -*- coding: utf-8 -*-
-from selenium import webdriver
-from selenium.webdriver.support.ui import Select
-from selenium.common.exceptions import NoSuchElementException
-from selenium.common.exceptions import NoAlertPresentException
-import unittest
-from application import Application
+from fixture.application import Application
 import pytest
-from class_test_contact import Auth, Contactdate
+from model.class_test_contact import Auth, Contactdate
 
 
 @pytest.fixture

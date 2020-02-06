@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 import pytest
-from сlass_test_group import Group, Auth
-from application import Application
+from model.сlass_test_group import Group, Auth
+from fixture.application import Application
 
 
 @pytest.fixture
