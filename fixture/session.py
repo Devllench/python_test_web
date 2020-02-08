@@ -22,4 +22,8 @@ class SessionHelper:
     def logout_site(self):
         wd = self.app.wd
         # разлагиниваемся
-        wd.find_element_by_link_text("Logout").click()
+        wd.find_element_by_partial_link_text('Logout').click()
+        # wd.find_element_by_xpath("//a[@onclick='document.logout.submit();']").click()
+        # wd.find_element_by_xpath("//a[contains(text(),'Logout')]").click()
+        # wd.find_element_by_xpath("//a[contains(@href, '#')]").click()
+        wd.find_element_by_name("user")
