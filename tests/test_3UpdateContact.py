@@ -2,7 +2,7 @@
 from model.class_test_contact import Auth, Contactdate
 
 
-def test_add_contact(app):
+def test_update_contact(app):
     # Данные используемые для тестирования
     Сontact_test1 = Contactdate(firstname="testnameupdate", middlename="testname3up", lastname="testname3up",
                                 nickname="testniki-up", title="testtitle-up", company="testcompany-up",
