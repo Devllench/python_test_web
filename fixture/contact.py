@@ -6,10 +6,28 @@ class ContactHelper:
     def __init__(self, app):
         self.app = app
 
-    def input_data_contact(self, Contactdate):
+    def create(self, Contactdate):
         wd = self.app.wd
         # press add new
         wd.find_element_by_link_text("add new").click()
+        self.input_data_contact(Contactdate)
+        # press enter
+        wd.find_element_by_xpath("//div[@id='content']/form/input[21]").click()
+        # press buttom home page
+        wd.find_element_by_link_text("home page").click()
+
+    def delete_first_contact(self):
+        wd = self.app.wd
+        wd.find_element_by_name("selected[]").click()
+        wd.find_element_by_xpath("//input[@value='Delete']").click()
+        wd.switch_to_alert().accept()
+
+    def set_edit_first_contact(self):
+        wd = self.app.wd
+        wd.find_element_by_xpath("(//img[@alt='Edit'])[2]").click()
+
+    def input_data_contact(self, Contactdate):
+        wd = self.app.wd
         # input date
         wd.find_element_by_name("firstname").click()
         wd.find_element_by_name("firstname").clear()
@@ -88,7 +106,4 @@ class ContactHelper:
         wd.find_element_by_name("notes").click()
         wd.find_element_by_name("notes").clear()
         wd.find_element_by_name("notes").send_keys(Contactdate.notes)
-        # press enter
-        wd.find_element_by_xpath("//div[@id='content']/form/input[21]").click()
-        # нажимаем кнопку home page
-        wd.find_element_by_link_text("home page").click()
+

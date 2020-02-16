@@ -15,5 +15,5 @@ def test_add_contact(app):
     # логинемся
     app.session.login_site(Auth(username="admin", password="secret"))
     # добавляем контакт
-    app.contact.input_data_contact(Сontact_test1)
+    app.contact.create(Сontact_test1)
     app.session.logout_site()
