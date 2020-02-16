@@ -3,7 +3,7 @@ import time
 time.sleep(5)
 
 
-def test_add_contact(app):
+def test_delete_contact(app):
     # логинемся
     app.session.login_site(Auth(username="admin", password="secret"))
     # добавляем контакт

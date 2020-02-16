@@ -16,8 +16,18 @@ class ContactHelper:
         # press buttom home page
         wd.find_element_by_link_text("home page").click()
 
+    def update(self, Contactdate):
+        wd = self.app.wd
+        #press edit contact
+        self.set_edit_first_contact()
+        self.input_data_contact(Contactdate)
+        #wd.find_element_by_name("update").click()
+        wd.find_element_by_xpath("(//input[@name='update'])[2]").click()
+        wd.find_element_by_link_text("home page").click()
+
     def delete_first_contact(self):
         wd = self.app.wd
+        # select delete contact
         wd.find_element_by_name("selected[]").click()
         wd.find_element_by_xpath("//input[@value='Delete']").click()
         wd.switch_to_alert().accept()
@@ -99,7 +109,6 @@ class ContactHelper:
         wd.find_element_by_name("address2").click()
         wd.find_element_by_name("address2").clear()
         wd.find_element_by_name("address2").send_keys(Contactdate.address2)
-        wd.find_element_by_name("theform").click()
         wd.find_element_by_name("phone2").click()
         wd.find_element_by_name("phone2").clear()
         wd.find_element_by_name("phone2").send_keys(Contactdate.phone2)
