@@ -1,3 +1,6 @@
+import time
+
+
 class SessionHelper:
 
     def __init__(self, app):
@@ -7,7 +10,9 @@ class SessionHelper:
         wd = self.app.wd
         # открываем сайт
         wd.get("http://localhost/adressbook/index.php")
+        #wd.get("http://brokesite.ru/index.php")
         # логин
+        time.sleep(5)
         wd.find_element_by_name("user").click()
         wd.find_element_by_name("user").clear()
         wd.find_element_by_name("user").send_keys(Auth.username)

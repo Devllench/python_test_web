@@ -17,7 +17,9 @@ class Application:
     def open_home_page(self):
         wd = self.wd
         # open home page
+
         wd.get("http://localhost/adressbook/group.php")
+        # wd.get("http://brokesite.ru/group.php")
 
     def destroy(self):
         self.wd.quit()
