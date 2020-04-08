@@ -34,7 +34,7 @@ class ContactHelper:
 
     def set_edit_first_contact(self):
         wd = self.app.wd
-        wd.find_element_by_xpath("(//img[@alt='Edit'])[2]").click()
+        wd.find_element_by_xpath("(//img[@alt='Edit'])").click()
 
     def input_data_contact(self, Contactdate):
         wd = self.app.wd
@@ -116,3 +116,6 @@ class ContactHelper:
         wd.find_element_by_name("notes").clear()
         wd.find_element_by_name("notes").send_keys(Contactdate.notes)
 
+    def count(self):
+        wd = self.app.wd
+        return len(wd.find_elements_by_name("selected[]"))

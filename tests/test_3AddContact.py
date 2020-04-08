@@ -1,8 +1,6 @@
 # -*- coding: utf-8 -*-
 from model.class_test_contact import Contactdate
 
-import time
-
 
 def test_add_contact(app):
     # Данные используемые для тестирования

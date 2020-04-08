@@ -14,4 +14,6 @@ def test_update_contact(app):
                                 address2="test adr-up", phone2="testhome-up", notes="test-up")
     # логинемся
     # добавляем контакт
+    if app.contact.count() == 0:
+        app.contact.create(Сontact_test1)
     app.contact.update(Сontact_test1)
