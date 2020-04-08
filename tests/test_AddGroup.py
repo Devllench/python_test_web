@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from model.сlass_test_group import Group, Auth
+from model.сlass_test_group import Group
 
 
 def test_add_group(app):
