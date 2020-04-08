@@ -1,5 +1,7 @@
 # -*- coding: utf-8 -*-
-from model.class_test_contact import Auth, Contactdate
+from model.class_test_contact import Contactdate
+
+import time
 
 
 def test_add_contact(app):

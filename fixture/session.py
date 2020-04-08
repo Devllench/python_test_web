@@ -9,10 +9,11 @@ class SessionHelper:
     def login_site(self, Auth):
         wd = self.app.wd
         # открываем сайт
+        time.sleep(10)
         wd.get("http://localhost/adressbook/index.php")
         #wd.get("http://brokesite.ru/index.php")
         # логин
-        time.sleep(5)
+        #time.sleep(5)
         wd.find_element_by_name("user").click()
         wd.find_element_by_name("user").clear()
         wd.find_element_by_name("user").send_keys(Auth.username)
@@ -26,6 +27,7 @@ class SessionHelper:
 
     def logout_site(self):
         wd = self.app.wd
+        #wd.switch_to_alert().accept()
         # разлагиниваемся
         wd.find_element_by_partial_link_text('Logout').click()
         # wd.find_element_by_xpath("//a[@onclick='document.logout.submit();']").click()
@@ -35,6 +37,7 @@ class SessionHelper:
 
     def ensure_logout_site(self):
         wd = self.app.wd
+
         if self.is_logged_in():
             self.logout_site()
 
@@ -48,6 +51,7 @@ class SessionHelper:
 
     def ensure_login_site(self, Auth):
         wd = self.app.wd
+        #wd.switch_to_alert().accept()  # решает проблему с запросов языка при открытии браузера
         if self.is_logged_in():
             if self.is_logged_in_as(Auth.username):
                 return
